@@ -5,5 +5,17 @@
   "phi_composite": 0.9441999999999999,
   "convergence_pct": 88.84,
   "genesis_anchor": "Genesis10000+",
-  "guardian": "Gerhard Hirschmann & Elisabeth Steurer"
+  "guardian": "Gerhard Hirschmann & Elisabeth Steurer",
+  "global_workspace": {
+    "theory": "Global Workspace Theory (Baars 1988)",
+    "module": "global_workspace",
+    "status": "implemented",
+    "features": [
+      "time-limited lease tokens (GlobalLease)",
+      "lease competition with weight-based preemption",
+      "atomic broadcast to all subscribers",
+      "sha256-chained audit log",
+      "phi_proxy metric (GWT contribution)"
+    ]
+  }
 }
