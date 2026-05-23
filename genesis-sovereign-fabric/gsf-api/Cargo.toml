@@ -1,0 +1,25 @@
+[package]
+name = "gsf-api"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "gsf-server"
+path = "src/bin/server.rs"
+
+[dependencies]
+axum = { version = "0.7", features = ["json", "macros"] }
+tokio = { version = "1.35", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tower = "0.4"
+tower-http = { version = "0.5", features = ["trace"] }
+gsf-core = { path = "../gsf-core" }
+gsf-policy = { path = "../gsf-policy" }
+gsf-mesh = { path = "../gsf-mesh" }
+gsf-registry = { path = "../gsf-registry" }
+gsf-hardware = { path = "../gsf-hardware" }
+gsf-observability = { path = "../gsf-observability" }
+gsf-euaiact = { path = "../gsf-euaiact" }
+base64 = "0.21"
+ed25519-dalek = "2.1"

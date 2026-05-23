@@ -1,4 +1,6 @@
 __pycache__/
+target/
+*.rs.bk
 *.py[cod]
 *$py.class
 *.so

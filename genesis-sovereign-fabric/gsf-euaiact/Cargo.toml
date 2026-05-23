@@ -1,0 +1,12 @@
+[package]
+name = "gsf-euaiact"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+parking_lot = "0.12"
+sha2 = "0.10"

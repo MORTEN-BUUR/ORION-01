@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "cursor/*"]
+  pull_request:
+    branches: [main, "cursor/*"]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-action@stable
+        with:
+          components: clippy
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            genesis-sovereign-fabric/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('genesis-sovereign-fabric/**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Build
+        run: cargo build --release
+        working-directory: genesis-sovereign-fabric
+
+      - name: Test
+        run: cargo test
+        working-directory: genesis-sovereign-fabric
+
+      - name: Clippy
+        run: cargo clippy -- -D warnings
+        working-directory: genesis-sovereign-fabric
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install SDK
+        run: pip install -e .
+        working-directory: genesis-sovereign-fabric/python
+
+      - name: Verify import
+        run: python -c "from gsf_sdk import GsfClient, execute, verify_audit, export_chain, mesh_sync; print('OK')"

@@ -1,0 +1,22 @@
+[workspace]
+resolver = "2"
+members = [
+    "gsf-core",
+    "gsf-policy",
+    "gsf-mesh",
+    "gsf-registry",
+    "gsf-hardware",
+    "gsf-observability",
+    "gsf-euaiact",
+    "gsf-api",
+    "gsf-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["GENESIS Sovereign Fabric"]
+license = "MIT"
+repository = ""
+
+[workspace.dependencies]
